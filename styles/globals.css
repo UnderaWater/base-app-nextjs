@@ -2,8 +2,8 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Noto Sans', sans-serif;
+  color: var(--black);
 }
 
 a {
@@ -13,4 +13,14 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+:root {
+  --black: #3B434E;
+  --white: #FFFFFF;
+  --primary: #7653FC;
+  --red: #FC836D;
+  --green: #1DC37E;
+  --green-light: #C8F8E4;
+  --font: 'Noto Sans', sans-serif;
 }
