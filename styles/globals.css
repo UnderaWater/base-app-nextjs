@@ -1,7 +1,5 @@
 html,
 body {
-  padding: 0;
-  margin: 0;
   font-family: 'Noto Sans', sans-serif;
   color: var(--black);
 }
@@ -13,14 +11,18 @@ a {
 
 * {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 :root {
   --black: #3B434E;
   --white: #FFFFFF;
   --primary: #7653FC;
+  --primary-hover: #6344DF;
   --red: #FC836D;
   --green: #1DC37E;
   --green-light: #C8F8E4;
+  --gray-light: #EBEBEB;
   --font: 'Noto Sans', sans-serif;
 }
