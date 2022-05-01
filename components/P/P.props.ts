@@ -1,6 +1,6 @@
-import { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode } from "react";
+import { DetailedHTMLProps, HTMLAttributes, ReactNode } from "react";
 
-export interface IPProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement> {
+export interface IPProps extends DetailedHTMLProps<HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement> {
     size?: 's' | 'm' | 'l';
     children: ReactNode;
 }
