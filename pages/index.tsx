@@ -3,10 +3,11 @@ import Htag from "../components/Htag/Htag";
 import P from "../components/P/P";
 import Rating from "../components/Rating/Rating";
 import Tag from "../components/Tag/Tag";
+import { withLayout } from "../layout/Layout";
 
-export default function Home() {
+function Home() {
   return (
-    <div>
+    <>
       <Htag tag="h1">Hello</Htag>
       <Button appearance="primary" arrow="down">Button</Button>
       <Button appearance="ghost" arrow="down">Button</Button>
@@ -16,6 +17,8 @@ export default function Home() {
       <Tag size="m" color="red">Lorem, ipsum.</Tag>
       <Tag size="s" color="green">Lorem, ipsum.</Tag>
       <Rating rating={4} isEditable />
-    </div>
+    </>
   );
 }
+
+export default withLayout(Home);
