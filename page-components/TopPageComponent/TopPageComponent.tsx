@@ -3,8 +3,8 @@ import Htag from '../../components/Htag/Htag';
 import Tag from '../../components/Tag/Tag';
 import { ITopPageCompnentProps } from './TopPageComponent.props';
 import styles from './TopPageComponent.module.css';
-import Card from '../../components/Card/Card';
 import VacanciesData from '../../components/VacanciesData/VacanciesData';
+import { TopLevelCategory } from '../../interfaces/page.interface';
 
 const TopPageComponent: React.FC<ITopPageCompnentProps> = ({ page, products, firstCategory }) => {
     return (
@@ -21,7 +21,7 @@ const TopPageComponent: React.FC<ITopPageCompnentProps> = ({ page, products, fir
                 <Htag tag='h2'>Vacancies - {page.category}</Htag>
                 <Tag color='red' size='m'>indead.com</Tag>
             </div>
-            <VacanciesData {...page.hh} />
+            {firstCategory === TopLevelCategory.Courses && <VacanciesData {...page.hh} />}
         </div>
     );
 };
