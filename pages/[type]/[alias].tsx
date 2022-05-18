@@ -7,16 +7,15 @@ import { IMenuItem } from '../../interfaces/menu.interface';
 import { ITopPageModel, TopLevelCategory } from '../../interfaces/page.interface';
 import { IProductModel } from '../../interfaces/product.interface';
 import { withLayout } from '../../layout/Layout';
+import TopPageComponent from '../../page-components/TopPageComponent/TopPageComponent';
 
-const Course: React.FC<ICourseProps> = ({ menu, page, products }) => {
+const TopPage: React.FC<ITopPageProps> = ({ firstCategory, page, products }) => {
     return (
-        <div>
-            {products && products.length}
-        </div>
+        <TopPageComponent firstCategory={firstCategory} page={page} products={products} />
     );
 };
 
-export default withLayout(Course);
+export default withLayout(TopPage);
 
 export const getStaticPaths: GetStaticPaths = async () => {
     let paths: string[] = [];
@@ -35,7 +34,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     };
 };
 
-export const getStaticProps: GetStaticProps<ICourseProps> = async ({ params }: GetStaticPropsContext<ParsedUrlQuery>) => {
+export const getStaticProps: GetStaticProps<ITopPageProps> = async ({ params }: GetStaticPropsContext<ParsedUrlQuery>) => {
     if (!params) {
         return {
             notFound: true
@@ -82,7 +81,7 @@ export const getStaticProps: GetStaticProps<ICourseProps> = async ({ params }: G
     }
 };
 
-interface ICourseProps extends Record<string, unknown> {
+interface ITopPageProps extends Record<string, unknown> {
     menu: IMenuItem[];
     firstCategory: TopLevelCategory;
     page: ITopPageModel;
