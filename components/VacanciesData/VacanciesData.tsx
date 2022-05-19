@@ -14,7 +14,7 @@ const VacanciesData: React.FC<IVacanciesDataProps> = ({ count, juniorSalary, mid
             <Card className={styles.salary}>
                 <div>
                     <div className={styles.title}>Elementary</div>
-                    <div className={styles.salaryValue}>{juniorSalary}</div>
+                    <div className={styles.salaryValue}>{Math.round(juniorSalary/80)} $</div>
                     <div className={styles.rate}>
                         <RateSvg className={styles.filled} />
                         <RateSvg />
@@ -23,7 +23,7 @@ const VacanciesData: React.FC<IVacanciesDataProps> = ({ count, juniorSalary, mid
                 </div>
                 <div>
                     <div className={styles.title}>Middle</div>
-                    <div className={styles.salaryValue}>{middleSalary}</div>
+                    <div className={styles.salaryValue}>{Math.round(middleSalary/80)} $</div>
                     <div className={styles.rate}>
                         <RateSvg className={styles.filled} />
                         <RateSvg className={styles.filled} />
@@ -32,7 +32,7 @@ const VacanciesData: React.FC<IVacanciesDataProps> = ({ count, juniorSalary, mid
                 </div>
                 <div>
                     <div className={styles.title}>Senior</div>
-                    <div className={styles.salaryValue}>{seniorSalary}</div>
+                    <div className={styles.salaryValue}>{Math.round(seniorSalary/80)} $</div>
                     <div className={styles.rate}>
                         <RateSvg className={styles.filled} />
                         <RateSvg className={styles.filled} />

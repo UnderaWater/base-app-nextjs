@@ -21,7 +21,7 @@ const TopPageComponent: React.FC<ITopPageCompnentProps> = ({ page, products, fir
                 <Htag tag='h2'>Vacancies - {page.category}</Htag>
                 <Tag color='red' size='m'>indead.com</Tag>
             </div>
-            {firstCategory === TopLevelCategory.Courses && <VacanciesData {...page.hh} />}
+            {firstCategory === TopLevelCategory.Courses && page.hh && <VacanciesData {...page.hh} />}
         </div>
     );
 };
