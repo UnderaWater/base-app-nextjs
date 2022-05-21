@@ -7,6 +7,8 @@ import VacanciesData from '../../components/VacanciesData/VacanciesData';
 import { TopLevelCategory } from '../../interfaces/page.interface';
 import Advantages from '../../components/Advantages/Advantages';
 import P from '../../components/P/P';
+import Sort from '../../components/Sort/Sort';
+import { SortEnum } from '../../components/Sort/Sort.props';
 
 const TopPageComponent: React.FC<ITopPageCompnentProps> = ({ page, products, firstCategory }) => {
     return (
@@ -14,7 +16,7 @@ const TopPageComponent: React.FC<ITopPageCompnentProps> = ({ page, products, fir
             <div className={styles.title}>
                 <Htag tag='h1'>{page.title}</Htag>
                 {products && <Tag color='gray' size='m'>{products.length}</Tag>}
-                <span>sort</span>
+                <Sort sort={SortEnum.Rating} setSort={() => {}} />
             </div>
             <div>
                 {products && products.map(product => (<div key={product._id}>{product.title}</div>))}
