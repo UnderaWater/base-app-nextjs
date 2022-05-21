@@ -23,7 +23,7 @@ const Sort: React.FC<ISortProps> = ({ sort, setSort, className, ...props }) => {
                 })}
             >
                 <SortSvg className={styles.sortIcon} />
-                by&nbsp;price
+                by price
             </span>
         </div>
     );
