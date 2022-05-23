@@ -10,6 +10,7 @@ import P from '../../components/P/P';
 import Sort from '../../components/Sort/Sort';
 import { SortEnum } from '../../components/Sort/Sort.props';
 import { sortReducer } from '../../reducers/sort';
+import Product from '../../components/Product/Product';
 
 const TopPageComponent: React.FC<ITopPageCompnentProps> = ({ page, products, firstCategory }) => {
     const [{ products: sortProducts, sort }, dispatchSort] = useReducer(sortReducer, { products, sort: SortEnum.Rating });
@@ -26,7 +27,7 @@ const TopPageComponent: React.FC<ITopPageCompnentProps> = ({ page, products, fir
                 <Sort sort={sort} setSort={setSort} />
             </div>
             <div>
-                {sortProducts && sortProducts.map(product => (<div key={product._id}>{product.title}</div>))}
+                {sortProducts && sortProducts.map(product => (<Product key={product._id} product={product} />))}
             </div>
             <div className={styles.siteTitle}>
                 <Htag tag='h2'>Vacancies - {page.category}</Htag>
