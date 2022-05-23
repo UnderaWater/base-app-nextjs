@@ -2,6 +2,7 @@ import axios from "axios";
 import { GetStaticProps } from "next";
 import Button from "../components/Button/Button";
 import Htag from "../components/Htag/Htag";
+import Input from "../components/Input/Input";
 import P from "../components/P/P";
 import Rating from "../components/Rating/Rating";
 import Tag from "../components/Tag/Tag";
@@ -20,9 +21,7 @@ const Home: React.FC<IHomeProps> = ({ menu, firstCategory }) => {
       <Tag size="m" color="red">Lorem, ipsum.</Tag>
       <Tag size="s" color="green">Lorem, ipsum.</Tag>
       <Rating rating={4} isEditable />
-      <ul>
-        {menu.map(m => <li key={m._id.secondCategory}>{m._id.secondCategory}</li>)}
-      </ul>
+      <Input placeholder="text" />
     </>
   );
 };
