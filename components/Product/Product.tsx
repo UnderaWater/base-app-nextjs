@@ -27,10 +27,18 @@ const Product: React.FC<IProductProps> = ({ product, className, ...props }) => {
       </div>
       <div className={styles.priceTitle}>Price</div>
       <div className={styles.creditTittle}>Credit</div>
-      <div className={styles.rateTitle}>{product.reviewCount} reviews</div>
+      <div className={styles.rateTitle}>{product.reviewCount} {product.reviewCount === 1 ? 'review' : 'reviews'}</div>
       <hr className={styles.hr}/>
       <div className={styles.description}>{product.description}</div>
-      <div className={styles.feature}>Feature</div>
+      <div className={styles.feature}>
+        {product.characteristics.map(c => (
+          <div className={styles.characteristics} key={c.name}>
+            <span className={styles.characteristicsName}>{c.name}</span>
+            <span className={styles.characteristicsDots}></span>
+            <span className={styles.characteristicsValue}>{c.value}</span>
+          </div>
+        ))}
+      </div>
       <div className={styles.advBlock}>
         <div className={styles.advantages}>
           <div>Benefits</div>
