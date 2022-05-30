@@ -7,6 +7,8 @@ import Tag from '../Tag/Tag';
 import Button from '../Button/Button';
 import cn from 'classnames';
 import Review from '../Review/Review';
+import Divider from '../Divider/Divider';
+import ReviewForm from '../ReviewForm/ReviewForm';
 
 const Product: React.FC<IProductProps> = ({ product, className, ...props }) => {
   const [isRewievOpened, setIsRewievOpened] = useState<boolean>(false);
@@ -73,8 +75,12 @@ const Product: React.FC<IProductProps> = ({ product, className, ...props }) => {
         [styles.closed]: !isRewievOpened
       })} color='blue'>
         {product.reviews.map(review => (
-          <Review key={review._id} review={review} />
+          <>
+            <Review key={review._id} review={review} />
+            <Divider />
+          </>
         ))}
+        <ReviewForm productId={product._id} />
       </Card>
     </>
   );
