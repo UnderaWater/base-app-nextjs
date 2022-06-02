@@ -69,7 +69,7 @@ const Menu: React.FC = () => {
     const buildThirdLevel = (pages: IPageItem[], route: string) => {
         return (
             pages.map(p => (
-                <Link href={`/${route}/${p.alias}`}>
+                <Link key={p._id} href={`/${route}/${p.alias}`}>
                     <a className={cn(styles.thirdLevel, {
                         [styles.thirdLevelActive]: `/${route}/${p.alias}` === router.asPath
                     })}>

@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { ForwardedRef, forwardRef, useEffect, useState } from 'react';
 import StarSvg from '../StarSvg/StarSvg';
 import { IRatingProps } from './Rating.props';
 import cn from 'classnames';
 import styles from './Rating.module.css';
 
-const Rating: React.FC<IRatingProps> = ({ rating, setRating, isEditable = false, ...props }) => {
+const Rating = forwardRef(({ rating, setRating, isEditable = false, ...props }: IRatingProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
     const [ratingArray, setRatingArray] = useState<JSX.Element[]>(new Array(5).fill(<></>));
 
     const changeDisplay = (i: number) => {
@@ -55,10 +55,10 @@ const Rating: React.FC<IRatingProps> = ({ rating, setRating, isEditable = false,
     }, [rating]);
 
     return (
-        <div {...props}>
+        <div {...props} ref={ref}>
             {ratingArray.map((item, index) => (<span key={index}>{item}</span>))}
         </div>
     );
-};
+});
 
 export default Rating;

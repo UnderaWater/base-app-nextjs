@@ -75,10 +75,10 @@ const Product: React.FC<IProductProps> = ({ product, className, ...props }) => {
         [styles.closed]: !isRewievOpened
       })} color='blue'>
         {product.reviews.map(review => (
-          <>
-            <Review key={review._id} review={review} />
+          <div key={review._id}>
+            <Review review={review} />
             <Divider />
-          </>
+          </div>
         ))}
         <ReviewForm productId={product._id} />
       </Card>
