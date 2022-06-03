@@ -10,7 +10,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { IReviewForm } from '../../interfaces/reviewForm.interface';
 
 const ReviewForm: React.FC<IReviewFormProps> = ({ productId, className, ...props }) => {
-  const { register, control, handleSubmit } = useForm<IReviewForm>();
+  const { register, control, handleSubmit, formState: { errors } } = useForm<IReviewForm>();
 
   const onSubmit = (data: IReviewForm) => {
     console.log(data)
@@ -19,8 +19,17 @@ const ReviewForm: React.FC<IReviewFormProps> = ({ productId, className, ...props
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className={cn(styles.reviewForm, className)} {...props}>
-        <Input {...register('name')} placeholder='Name' />
-        <Input {...register('title')} placeholder='title review' className={styles.title} />
+        <Input
+          {...register('name', { required: { value: true, message: 'fill in the name' } })}
+          placeholder='Name'
+          error={errors.name}
+        />
+        <Input
+          {...register('title', { required: { value: true, message: 'fill in the title review' } })}
+          placeholder='title review'
+          className={styles.title}
+          error={errors.title}
+        />
         <div className={styles.rating}>
           <span>estimation:</span>
           <Controller
@@ -33,7 +42,12 @@ const ReviewForm: React.FC<IReviewFormProps> = ({ productId, className, ...props
             }
           />
         </div>
-        <Textarea {...register('description')} placeholder='Text review' className={styles.description} />
+        <Textarea
+          {...register('description', { required: { value: true, message: 'fill in the description' } })}
+          placeholder='Text review'
+          className={styles.description}
+          error={errors.description}
+        />
         <div className={styles.submit}>
           <Button appearance='primary'>
             Submit

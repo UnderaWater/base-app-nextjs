@@ -3,9 +3,14 @@ import cn from 'classnames';
 import styles from './Input.module.css';
 import { IInputProps } from './Input.props';
 
-const Input: React.FC = forwardRef(({ className, ...props }: IInputProps, ref: ForwardedRef<HTMLInputElement>) => {
+const Input = forwardRef(({ className, error, ...props }: IInputProps, ref: ForwardedRef<HTMLInputElement>): JSX.Element => {
   return (
-    <input className={cn(className, styles.input)} ref={ref} {...props}/>
+    <div className={cn(styles.inputWrapper, className)}>
+      <input className={cn(styles.input, {
+        [styles.error]: error
+      })} ref={ref} {...props} />
+      { error && <span className={styles.errorMessage}>{error.message}</span> }
+    </div>
   );
 });
 
