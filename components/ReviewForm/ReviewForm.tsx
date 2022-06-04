@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IReviewFormProps } from './ReviewForm.props';
 import cn from 'classnames';
 import styles from './ReviewForm.module.css';
@@ -7,13 +7,27 @@ import Rating from '../Rating/Rating';
 import Textarea from '../Textarea/Textarea';
 import Button from '../Button/Button';
 import { Controller, useForm } from 'react-hook-form';
-import { IReviewForm } from '../../interfaces/reviewForm.interface';
+import { IReviewForm, IReviewSentResponse } from '../../interfaces/reviewForm.interface';
+import axios from 'axios';
+import { API } from '../../helpers/api';
 
 const ReviewForm: React.FC<IReviewFormProps> = ({ productId, className, ...props }) => {
-  const { register, control, handleSubmit, formState: { errors } } = useForm<IReviewForm>();
+  const { register, control, handleSubmit, formState: { errors }, reset } = useForm<IReviewForm>();
+  const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const [error, setError] = useState<string>();
 
-  const onSubmit = (data: IReviewForm) => {
-    console.log(data);
+  const onSubmit = async (formData: IReviewForm) => {
+    try {
+      const { data } = await axios.post<IReviewSentResponse>(API.review.createDemo, { ...formData, productId });
+      if (data.message) {
+        setIsSuccess(true);
+        reset();
+      } else {
+        setError('Something went wrong');
+      }
+    } catch (e) {
+      setError(e.message);
+    }
   };
 
   return (
@@ -61,10 +75,14 @@ const ReviewForm: React.FC<IReviewFormProps> = ({ productId, className, ...props
           </Button>
         </div>
       </div>
-      <div className={styles.success}>
+      {isSuccess && <div className={cn(styles.panel, styles.success)} onClick={() => setIsSuccess(false)}>
         <div className={styles.successTitle}>Your feedback has been sent</div>
         <div className={styles.close}>&#10006;</div>
-      </div>
+      </div>}
+      {error && <div className={cn(styles.panel, styles.error)} onClick={() => setError(undefined)}>
+        Something went wrong, try refreshing the page
+        <div className={styles.close}>&#10006;</div>
+      </div>}
     </form>
   );
 };

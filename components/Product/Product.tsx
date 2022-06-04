@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Card from '../Card/Card';
 import { IProductProps } from './Product.props';
 import styles from './Product.module.css';
@@ -12,9 +12,18 @@ import ReviewForm from '../ReviewForm/ReviewForm';
 
 const Product: React.FC<IProductProps> = ({ product, className, ...props }) => {
   const [isRewievOpened, setIsRewievOpened] = useState<boolean>(false);
+  const reviewRef = useRef<HTMLDivElement>(null);
+
+  const scrollToReview = () => {
+    setIsRewievOpened(true);
+    reviewRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  };
 
   return (
-    <>
+    <div className={className} {...props}>
       <Card className={styles.product}>
         <div className={styles.logo}>
           <img src={process.env.NEXT_PUBLIC_DOMAIN + product.image} alt={product.title} />
@@ -34,7 +43,9 @@ const Product: React.FC<IProductProps> = ({ product, className, ...props }) => {
         </div>
         <div className={styles.priceTitle}>Price</div>
         <div className={styles.creditTittle}>Credit</div>
-        <div className={styles.rateTitle}>{product.reviewCount} {product.reviewCount === 1 ? 'review' : 'reviews'}</div>
+        <div className={styles.rateTitle}>
+          <a href='#ref' onClick={scrollToReview}>{product.reviewCount} {product.reviewCount === 1 ? 'review' : 'reviews'}</a>
+        </div>
         <hr className={styles.hr} />
         <div className={styles.description}>{product.description}</div>
         <div className={styles.feature}>
@@ -73,7 +84,9 @@ const Product: React.FC<IProductProps> = ({ product, className, ...props }) => {
       <Card className={cn(styles.reviews, {
         [styles.opened]: isRewievOpened,
         [styles.closed]: !isRewievOpened
-      })} color='blue'>
+      })} color='blue'
+        ref={reviewRef}
+      >
         {product.reviews.map(review => (
           <div key={review._id}>
             <Review review={review} />
@@ -82,7 +95,7 @@ const Product: React.FC<IProductProps> = ({ product, className, ...props }) => {
         ))}
         <ReviewForm productId={product._id} />
       </Card>
-    </>
+    </div>
   );
 };
 
