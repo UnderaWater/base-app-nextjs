@@ -26,8 +26,8 @@ const ReviewForm: React.FC<IReviewFormProps> = ({ productId, className, ...props
         setError('Something went wrong');
       }
     } catch (e) {
-      setError(e.message);
-    }
+			setError(e.message);
+		}
   };
 
   return (

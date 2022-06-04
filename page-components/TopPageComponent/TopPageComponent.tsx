@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import Htag from '../../components/Htag/Htag';
 import Tag from '../../components/Tag/Tag';
 import { ITopPageCompnentProps } from './TopPageComponent.props';
@@ -6,7 +6,6 @@ import styles from './TopPageComponent.module.css';
 import VacanciesData from '../../components/VacanciesData/VacanciesData';
 import { TopLevelCategory } from '../../interfaces/page.interface';
 import Advantages from '../../components/Advantages/Advantages';
-import P from '../../components/P/P';
 import Sort from '../../components/Sort/Sort';
 import { SortEnum } from '../../components/Sort/Sort.props';
 import { sortReducer } from '../../reducers/sort';
@@ -18,6 +17,10 @@ const TopPageComponent: React.FC<ITopPageCompnentProps> = ({ page, products, fir
     const setSort = (sort: SortEnum) => {
         dispatchSort({ type: sort });
     };
+
+    useEffect(() => {
+        dispatchSort({ type: 'reset', initialState: products });
+    }, [products]);
 
     return (
         <div className={styles.wrapper}>
@@ -38,7 +41,7 @@ const TopPageComponent: React.FC<ITopPageCompnentProps> = ({ page, products, fir
                 <Htag tag='h2'>Advantages</Htag>
                 <Advantages advantages={page.advantages} />
             </>}
-            {page.seoText && <div className={styles.seo} dangerouslySetInnerHTML={{ __html: page.seoText}}></div>}
+            {page.seoText && <div className={styles.seo} dangerouslySetInnerHTML={{ __html: page.seoText }}></div>}
             <Htag tag='h2'>Acquired skills</Htag>
             {page.tags.map(tag => <Tag key={tag} color='primary'>{tag}</Tag>)}
         </div>
