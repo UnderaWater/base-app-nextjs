@@ -6,6 +6,7 @@ import Input from "../components/Input/Input";
 import P from "../components/P/P";
 import Rating from "../components/Rating/Rating";
 import Tag from "../components/Tag/Tag";
+import { API } from "../helpers/api";
 import { IMenuItem } from "../interfaces/menu.interface";
 import { withLayout } from "../layout/Layout";
 
@@ -30,7 +31,7 @@ export default withLayout(Home);
 
 export const getStaticProps: GetStaticProps<IHomeProps> = async () => {
 	const firstCategory = 0;
-	const { data: menu } = await axios.post<IMenuItem[]>(process.env.NEXT_PUBLIC_DOMAIN + '/api/top-page/find', {
+	const { data: menu } = await axios.post<IMenuItem[]>(API.topPage.find, {
 		firstCategory
 	});
   

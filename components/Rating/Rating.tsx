@@ -4,7 +4,7 @@ import { IRatingProps } from './Rating.props';
 import cn from 'classnames';
 import styles from './Rating.module.css';
 
-const Rating = forwardRef(({ rating, setRating, isEditable = false, ...props }: IRatingProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
+const Rating = forwardRef(({ rating, setRating, error, isEditable = false, ...props }: IRatingProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
     const [ratingArray, setRatingArray] = useState<JSX.Element[]>(new Array(5).fill(<></>));
 
     const changeDisplay = (i: number) => {
@@ -55,8 +55,11 @@ const Rating = forwardRef(({ rating, setRating, isEditable = false, ...props }: 
     }, [rating]);
 
     return (
-        <div {...props} ref={ref}>
+        <div {...props} ref={ref} className={cn(styles.ratingWrapper, {
+            [styles.error]: error
+        })}>
             {ratingArray.map((item, index) => (<span key={index}>{item}</span>))}
+            {error && <span className={styles.errorMessage}>{error.message}</span>}
         </div>
     );
 });

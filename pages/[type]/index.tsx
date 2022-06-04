@@ -5,6 +5,7 @@ import { ParsedUrlQuery } from 'querystring';
 import { IMenuItem } from '../../interfaces/menu.interface';
 import { withLayout } from '../../layout/Layout';
 import { firstLevelMenu } from '../../helpers/helpers';
+import { API } from '../../helpers/api';
 
 const Type: React.FC<TypeProps> = ({ firstCategory }) => {
     return (
@@ -37,7 +38,7 @@ export const getStaticProps: GetStaticProps<TypeProps> = async ({ params }: GetS
         };
     }
 
-    const { data: menu } = await axios.post<IMenuItem[]>(process.env.NEXT_PUBLIC_DOMAIN + '/api/top-page/find', {
+    const { data: menu } = await axios.post<IMenuItem[]>(API.topPage.find, {
         firstCategory: firstCategoryItem.id
     });
 

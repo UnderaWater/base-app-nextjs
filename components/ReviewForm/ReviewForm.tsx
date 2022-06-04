@@ -13,8 +13,8 @@ const ReviewForm: React.FC<IReviewFormProps> = ({ productId, className, ...props
   const { register, control, handleSubmit, formState: { errors } } = useForm<IReviewForm>();
 
   const onSubmit = (data: IReviewForm) => {
-    console.log(data)
-  }
+    console.log(data);
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -35,9 +35,16 @@ const ReviewForm: React.FC<IReviewFormProps> = ({ productId, className, ...props
           <Controller
             control={control}
             name='rating'
+            rules={{ required: { value: true, message: 'specify the rating' } }}
             render={
               ({ field }) => (
-                <Rating isEditable rating={field.value} ref={field.ref} setRating={field.onChange} />
+                <Rating
+                  isEditable
+                  rating={field.value}
+                  ref={field.ref}
+                  setRating={field.onChange}
+                  error={errors.rating}
+                />
               )
             }
           />
