@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { ForwardedRef, forwardRef, useRef, useState } from 'react';
 import Card from '../Card/Card';
 import { IProductProps } from './Product.props';
 import styles from './Product.module.css';
@@ -9,8 +9,9 @@ import cn from 'classnames';
 import Review from '../Review/Review';
 import Divider from '../Divider/Divider';
 import ReviewForm from '../ReviewForm/ReviewForm';
+import { motion } from 'framer-motion';
 
-const Product: React.FC<IProductProps> = ({ product, className, ...props }) => {
+const Product = motion(forwardRef(({ product, className, ...props }: IProductProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
   const [isRewievOpened, setIsRewievOpened] = useState<boolean>(false);
   const reviewRef = useRef<HTMLDivElement>(null);
 
@@ -23,7 +24,7 @@ const Product: React.FC<IProductProps> = ({ product, className, ...props }) => {
   };
 
   return (
-    <div className={className} {...props}>
+    <div className={className} {...props} ref={ref}>
       <Card className={styles.product}>
         <div className={styles.logo}>
           <img src={process.env.NEXT_PUBLIC_DOMAIN + product.image} alt={product.title} />
@@ -97,6 +98,6 @@ const Product: React.FC<IProductProps> = ({ product, className, ...props }) => {
       </Card>
     </div>
   );
-};
+}));
 
 export default Product;

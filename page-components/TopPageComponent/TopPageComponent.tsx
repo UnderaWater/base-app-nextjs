@@ -30,7 +30,7 @@ const TopPageComponent: React.FC<ITopPageCompnentProps> = ({ page, products, fir
                 <Sort sort={sort} setSort={setSort} />
             </div>
             <div>
-                {sortProducts && sortProducts.map(product => (<Product key={product._id} product={product} />))}
+                {sortProducts && sortProducts.map(product => (<Product layout key={product._id} product={product} />))}
             </div>
             <div className={styles.siteTitle}>
                 <Htag tag='h2'>Vacancies - {page.category}</Htag>
