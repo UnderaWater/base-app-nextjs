@@ -5,7 +5,6 @@ import styles from './Product.module.css';
 import Rating from '../Rating/Rating';
 import Tag from '../Tag/Tag';
 import Button from '../Button/Button';
-import cn from 'classnames';
 import Review from '../Review/Review';
 import Divider from '../Divider/Divider';
 import ReviewForm from '../ReviewForm/ReviewForm';

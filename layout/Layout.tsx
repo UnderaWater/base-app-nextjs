@@ -5,6 +5,7 @@ import { ILayoutProps } from './Layout.props';
 import Sidebar from './Sidebar/Sidebar';
 import styles from './Layout.module.css';
 import { AppContextProvider, IAppContext } from '../context/context';
+import Up from '../components/Up/Up';
 
 const Layout: React.FC<ILayoutProps> = ({ children }) => {
   return (
@@ -15,6 +16,7 @@ const Layout: React.FC<ILayoutProps> = ({ children }) => {
         {children}
       </div>
       <Footer className={styles.footer} />
+      <Up />
     </div>
   );
 };
