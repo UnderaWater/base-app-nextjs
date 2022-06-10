@@ -1,6 +1,7 @@
 import { motion, useAnimation } from 'framer-motion';
 import React, { useEffect } from 'react';
 import { useScrollY } from '../../hooks/useScrollY';
+import ButtonIcon from '../ButtonIcon/ButtonIcon';
 import UpSvg from '../UpSvg/UpSvg';
 import styles from './Up.module.css';
 
@@ -23,14 +24,13 @@ const Up: React.FC = () => {
     };
 
     return (
-        <motion.button
+        <motion.div
             className={styles.up}
-            onClick={scrollToTop}
             animate={controls}
             initial={{ opacity: 0 }}
         >
-            <UpSvg />
-        </motion.button>
+            <ButtonIcon appearance='white' icon='MenuSvg' onClick={scrollToTop} />
+        </motion.div>
     );
 };
 
