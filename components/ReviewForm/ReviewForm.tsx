@@ -11,7 +11,7 @@ import { IReviewForm, IReviewSentResponse } from '../../interfaces/reviewForm.in
 import axios from 'axios';
 import { API } from '../../helpers/api';
 
-const ReviewForm: React.FC<IReviewFormProps> = ({ productId, className, ...props }) => {
+const ReviewForm: React.FC<IReviewFormProps> = ({ productId, isOpened, className, ...props }) => {
   const { register, control, handleSubmit, formState: { errors }, reset } = useForm<IReviewForm>();
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [error, setError] = useState<string>();
@@ -25,7 +25,7 @@ const ReviewForm: React.FC<IReviewFormProps> = ({ productId, className, ...props
       } else {
         setError('Something went wrong');
       }
-    } catch (e) {
+    } catch (e: any) {
 			setError(e.message);
 		}
   };
@@ -37,12 +37,14 @@ const ReviewForm: React.FC<IReviewFormProps> = ({ productId, className, ...props
           {...register('name', { required: { value: true, message: 'fill in the name' } })}
           placeholder='Name'
           error={errors.name}
+          tabIndex={isOpened ? 0 : -1}
         />
         <Input
           {...register('title', { required: { value: true, message: 'fill in the title review' } })}
           placeholder='title review'
           className={styles.title}
           error={errors.title}
+          tabIndex={isOpened ? 0 : -1}
         />
         <div className={styles.rating}>
           <span>estimation:</span>
@@ -58,6 +60,7 @@ const ReviewForm: React.FC<IReviewFormProps> = ({ productId, className, ...props
                   ref={field.ref}
                   setRating={field.onChange}
                   error={errors.rating}
+                  tabIndex={isOpened ? 0 : -1}
                 />
               )
             }
@@ -68,9 +71,10 @@ const ReviewForm: React.FC<IReviewFormProps> = ({ productId, className, ...props
           placeholder='Text review'
           className={styles.description}
           error={errors.description}
+          tabIndex={isOpened ? 0 : -1}
         />
         <div className={styles.submit}>
-          <Button appearance='primary'>
+          <Button appearance='primary' tabIndex={isOpened ? 0 : -1}>
             Submit
           </Button>
         </div>

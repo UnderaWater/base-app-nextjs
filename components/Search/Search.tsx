@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, KeyboardEvent } from 'react';
 import { ISearchProps } from './Search.props';
 import cn from 'classnames';
 import styles from './Search.module.css';
