@@ -7,7 +7,7 @@ import SortSvg from '../SortSvg/SortSvg';
 const Sort: React.FC<ISortProps> = ({ sort, setSort, className, ...props }) => {
     return (
         <div className={cn(styles.sort, className)} {...props}>
-            <span
+            <button
                 onClick={() => setSort(SortEnum.Rating)}
                 className={cn({
                     [styles.active]: sort === SortEnum.Rating
@@ -15,8 +15,8 @@ const Sort: React.FC<ISortProps> = ({ sort, setSort, className, ...props }) => {
             >
                 <SortSvg className={styles.sortIcon} />
                 by rating
-            </span>
-            <span
+            </button>
+            <button
                 onClick={() => setSort(SortEnum.Price)}
                 className={cn({
                     [styles.active]: sort === SortEnum.Price
@@ -24,7 +24,7 @@ const Sort: React.FC<ISortProps> = ({ sort, setSort, className, ...props }) => {
             >
                 <SortSvg className={styles.sortIcon} />
                 by price
-            </span>
+            </button>
         </div>
     );
 };
