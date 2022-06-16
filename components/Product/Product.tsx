@@ -41,9 +41,24 @@ const Product = motion(forwardRef(({ product, className, ...props }: IProductPro
           <img src={process.env.NEXT_PUBLIC_DOMAIN + product.image} alt={product.title} />
         </div>
         <div className={styles.title}>{product.title}</div>
-        <div className={styles.price}>{product.price}</div>
-        <div className={styles.credit}>{product.credit}</div>
+        <div className={styles.price}>
+          <span>
+            <span className='visualyHidden'>price</span>
+            {product.price}
+          </span>
+          {product.oldPrice && <Tag className={styles.oldPrice} color="green">
+            <span className="visualyHidden">скидка</span>
+            {product.price - product.oldPrice}
+          </Tag>}
+        </div>
+        <div className={styles.credit}>
+          <span>
+            <span className='visualyHidden'>discount</span>
+            {product.credit}
+          </span>
+        </div>
         <div className={styles.rating}>
+          <span className='visualyHidden'>{'rating' + (product.reviewAvg ?? product.initialRating)}</span>
           <Rating rating={product.reviewAvg ?? product.initialRating} />
         </div>
         <div className={styles.tags}>
@@ -53,8 +68,8 @@ const Product = motion(forwardRef(({ product, className, ...props }: IProductPro
             </Tag>
           ))}
         </div>
-        <div className={styles.priceTitle}>Price</div>
-        <div className={styles.creditTittle}>Credit</div>
+        <div className={styles.priceTitle} aria-hidden={true}>Price</div>
+        <div className={styles.creditTittle} aria-hidden={true}>Credit</div>
         <div className={styles.rateTitle}>
           <a href='#ref' onClick={scrollToReview}>{product.reviewCount} {product.reviewCount === 1 ? 'review' : 'reviews'}</a>
         </div>
