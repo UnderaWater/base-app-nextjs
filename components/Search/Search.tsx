@@ -39,6 +39,7 @@ const Search: React.FC<ISearchProps> = ({ className, ...props }) => {
                 appearance='primary'
                 className={styles.button}
                 onClick={goToSearch}
+                aria-label='search'
             >
                 <SearchSvg />
             </Button>

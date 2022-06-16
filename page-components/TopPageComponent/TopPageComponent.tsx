@@ -26,7 +26,7 @@ const TopPageComponent: React.FC<ITopPageCompnentProps> = ({ page, products, fir
         <div className={styles.wrapper}>
             <div className={styles.title}>
                 <Htag tag='h1'>{page.title}</Htag>
-                {products && <Tag color='gray' size='m'>{products.length}</Tag>}
+                {products && <Tag color='gray' size='m' aria-label={products.length + 'elements'}>{products.length}</Tag>}
                 <Sort sort={sort} setSort={setSort} />
             </div>
             <div>
