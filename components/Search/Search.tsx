@@ -27,7 +27,7 @@ const Search: React.FC<ISearchProps> = ({ className, ...props }) => {
     };
 
     return (
-        <div className={cn(className, styles.search)} {...props}>
+        <form className={cn(className, styles.search)} {...props} role='search'>
             <Input
                 className={styles.input}
                 placeholder='Search...'
@@ -43,7 +43,7 @@ const Search: React.FC<ISearchProps> = ({ className, ...props }) => {
             >
                 <SearchSvg />
             </Button>
-        </div>
+        </form>
     );
 };
 

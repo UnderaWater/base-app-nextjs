@@ -125,9 +125,9 @@ const Menu: React.FC = () => {
     };
 
     return (
-        <div className={styles.menu}>
+        <nav className={styles.menu} role='navigation'>
             {buildFirstLevel()}
-        </div>
+        </nav>
     );
 };
 
