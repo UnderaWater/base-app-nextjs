@@ -12,7 +12,7 @@ import axios from 'axios';
 import { API } from '../../helpers/api';
 
 const ReviewForm: React.FC<IReviewFormProps> = ({ productId, isOpened, className, ...props }) => {
-  const { register, control, handleSubmit, formState: { errors }, reset } = useForm<IReviewForm>();
+  const { register, control, handleSubmit, formState: { errors }, reset, clearErrors } = useForm<IReviewForm>();
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [error, setError] = useState<string>();
 
@@ -38,6 +38,7 @@ const ReviewForm: React.FC<IReviewFormProps> = ({ productId, isOpened, className
           placeholder='Name'
           error={errors.name}
           tabIndex={isOpened ? 0 : -1}
+          aria-invalid={errors.name ? true : false}
         />
         <Input
           {...register('title', { required: { value: true, message: 'fill in the title review' } })}
@@ -45,6 +46,7 @@ const ReviewForm: React.FC<IReviewFormProps> = ({ productId, isOpened, className
           className={styles.title}
           error={errors.title}
           tabIndex={isOpened ? 0 : -1}
+          aria-invalid={errors.title ? true : false}
         />
         <div className={styles.rating}>
           <span>estimation:</span>
@@ -72,9 +74,11 @@ const ReviewForm: React.FC<IReviewFormProps> = ({ productId, isOpened, className
           className={styles.description}
           error={errors.description}
           tabIndex={isOpened ? 0 : -1}
+          aria-label='Text review'
+          aria-invalid={errors.description ? true : false}
         />
         <div className={styles.submit}>
-          <Button appearance='primary' tabIndex={isOpened ? 0 : -1}>
+          <Button appearance='primary' tabIndex={isOpened ? 0 : -1} onClick={() => clearErrors()}>
             Submit
           </Button>
         </div>

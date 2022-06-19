@@ -101,6 +101,8 @@ const Product = motion(forwardRef(({ product, className, ...props }: IProductPro
             appearance='ghost'
             arrow={isRewievOpened ? 'down' : 'right'}
             onClick={() => setIsRewievOpened(!isRewievOpened)}
+            className={styles.reviewButton}
+            aria-expanded={isRewievOpened}
           >
             read reviews
           </Button>
