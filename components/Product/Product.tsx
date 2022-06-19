@@ -47,15 +47,13 @@ const Product = motion(forwardRef(({ product, className, ...props }: IProductPro
             {product.price}
           </span>
           {product.oldPrice && <Tag className={styles.oldPrice} color="green">
-            <span className="visualyHidden">скидка</span>
+            <span className="visualyHidden">discount</span>
             {product.price - product.oldPrice}
           </Tag>}
         </div>
         <div className={styles.credit}>
-          <span>
-            <span className='visualyHidden'>discount</span>
-            {product.credit}
-          </span>
+          <span className='visualyHidden'>credit</span>
+          {product.credit}/<span className={styles.month}>month</span>
         </div>
         <div className={styles.rating}>
           <span className='visualyHidden'>{'rating' + (product.reviewAvg ?? product.initialRating)}</span>
