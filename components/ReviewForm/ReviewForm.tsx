@@ -26,8 +26,8 @@ const ReviewForm: React.FC<IReviewFormProps> = ({ productId, isOpened, className
         setError('Something went wrong');
       }
     } catch (e: any) {
-			setError(e.message);
-		}
+      setError(e.message);
+    }
   };
 
   return (
@@ -83,13 +83,17 @@ const ReviewForm: React.FC<IReviewFormProps> = ({ productId, isOpened, className
           </Button>
         </div>
       </div>
-      {isSuccess && <div className={cn(styles.panel, styles.success)} onClick={() => setIsSuccess(false)}>
+      {isSuccess && <div className={cn(styles.panel, styles.success)} role='alert'>
         <div className={styles.successTitle}>Your feedback has been sent</div>
-        <div className={styles.close}>&#10006;</div>
+        <button onClick={() => setIsSuccess(false)} className={styles.close} aria-label='Close notification'>
+          <span>&#10006;</span>
+        </button>
       </div>}
       {error && <div className={cn(styles.panel, styles.error)} onClick={() => setError(undefined)}>
-        Something went wrong, try refreshing the page
-        <div className={styles.close}>&#10006;</div>
+        Something went wrong, try refreshing the page.
+        <button onClick={() => setError(undefined)} className={styles.close} aria-label='Close notification'>
+          <span>&#10006;</span>
+        </button>
       </div>}
     </form>
   );
