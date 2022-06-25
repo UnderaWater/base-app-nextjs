@@ -10,9 +10,11 @@ import Sort from '../../components/Sort/Sort';
 import { SortEnum } from '../../components/Sort/Sort.props';
 import { sortReducer } from '../../reducers/sort';
 import Product from '../../components/Product/Product';
+import { useReducedMotion } from 'framer-motion';
 
 const TopPageComponent: React.FC<ITopPageCompnentProps> = ({ page, products, firstCategory }) => {
     const [{ products: sortProducts, sort }, dispatchSort] = useReducer(sortReducer, { products, sort: SortEnum.Rating });
+    const shouldReduceMotion = useReducedMotion();
 
     const setSort = (sort: SortEnum) => {
         dispatchSort({ type: sort });
@@ -30,7 +32,12 @@ const TopPageComponent: React.FC<ITopPageCompnentProps> = ({ page, products, fir
                 <Sort sort={sort} setSort={setSort} />
             </div>
             <div role='list'>
-                {sortProducts && sortProducts.map(product => (<Product role='listitem' layout key={product._id} product={product} />))}
+                {sortProducts && sortProducts.map(product => (<Product
+                    role='listitem'
+                    layout={shouldReduceMotion ? false : true}
+                    key={product._id}
+                    product={product}
+                    />))}
             </div>
             <div className={styles.siteTitle}>
                 <Htag tag='h2'>Vacancies - {page.category}</Htag>

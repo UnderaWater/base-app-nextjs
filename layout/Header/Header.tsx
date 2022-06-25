@@ -3,13 +3,14 @@ import { IHeaderProps } from './Header.props';
 import styles from './Header.module.css';
 import cn from 'classnames';
 import ButtonIcon from '../../components/ButtonIcon/ButtonIcon';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import Sidebar from '../Sidebar/Sidebar';
 import { useRouter } from 'next/router';
 
 const Header: React.FC<IHeaderProps> = ({ className, ...props }) => {
   const [isOpened, setIsOpened] = useState<boolean>(false);
   const router = useRouter();
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     setIsOpened(false)
@@ -24,7 +25,7 @@ const Header: React.FC<IHeaderProps> = ({ className, ...props }) => {
       }
     },
     closed: {
-      opacity: 0,
+      opacity: shouldReduceMotion ? 1 : 0,
       x: '100%',
     }
   };
