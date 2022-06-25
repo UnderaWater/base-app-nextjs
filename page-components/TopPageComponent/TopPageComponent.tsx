@@ -29,8 +29,8 @@ const TopPageComponent: React.FC<ITopPageCompnentProps> = ({ page, products, fir
                 {products && <Tag color='gray' size='m' aria-label={products.length + 'elements'}>{products.length}</Tag>}
                 <Sort sort={sort} setSort={setSort} />
             </div>
-            <div>
-                {sortProducts && sortProducts.map(product => (<Product layout key={product._id} product={product} />))}
+            <div role='list'>
+                {sortProducts && sortProducts.map(product => (<Product role='listitem' layout key={product._id} product={product} />))}
             </div>
             <div className={styles.siteTitle}>
                 <Htag tag='h2'>Vacancies - {page.category}</Htag>
